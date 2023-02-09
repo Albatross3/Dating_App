@@ -4,20 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ChatController {
-
-
-
-
-    @GetMapping("/start")
-    public String viewStart() {
-
-        return "start";
-    }
+public class WebController {
 
     @GetMapping("/main")
-    public String viewChat() {
-
+    public String viewMainPage() {
         return "main";
+    }
+
+    @GetMapping("/start")
+    public String viewStartPage() {
+        return "start";
     }
 }
