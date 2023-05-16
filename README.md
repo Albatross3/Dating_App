@@ -7,4 +7,3 @@
 <img width="1462" alt="image" src="https://user-images.githubusercontent.com/43260658/210006926-627c4c86-ee97-43aa-89fe-5cd4b18d9321.png">
 
 ### STOMP 도입 및 채팅방 추가 구현 (2/9)
-구현중..
