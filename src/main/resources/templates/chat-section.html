@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Anonymous Chat Room</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <style>
+        /* Add custom CSS here */
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">Anonymous Chat Room</h1>
+    <div class="chatroom mt-3" id="chatroom">
+        <!-- Messages will be displayed here -->
+    </div>
+    <div class="input-group mt-3">
+        <input type="text" class="form-control" placeholder="Enter your message here" id="message">
+        <div class="input-group-append">
+            <button class="btn btn-primary" id="send-message">Send</button>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script>
+    // Add JavaScript code here
+</script>
+</body>
+</html>
