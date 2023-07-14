@@ -1,6 +1,5 @@
-package com.random.ChatRoom.repository;
+package com.random.ChatRoom.core.chatroom.domain;
 
-import com.random.ChatRoom.domain.ChatRoom;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ChatRoomRepository extends JpaRepository<ChatRoom, Long> {

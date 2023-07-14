@@ -1,6 +1,5 @@
-package com.random.ChatRoom.domain;
+package com.random.ChatRoom.core.common;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import java.time.LocalDateTime;

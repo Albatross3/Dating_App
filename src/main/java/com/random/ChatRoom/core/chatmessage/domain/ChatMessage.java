@@ -1,5 +1,7 @@
-package com.random.ChatRoom.domain;
+package com.random.ChatRoom.core.chatmessage.domain;
 
+import com.random.ChatRoom.core.common.BaseEntity;
+import com.random.ChatRoom.core.chatroom.domain.ChatRoom;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -8,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class ChatMessage extends BaseEntity{
+public class ChatMessage extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long chatMessageId;
