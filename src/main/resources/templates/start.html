@@ -35,6 +35,8 @@
         data-bs-target="#staticBackdrop">
   질문 생성
 </button>
+<input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">
+<input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -49,7 +51,7 @@
         <form th:action="@{/chat/room}" method="post">
 
           <div class="mb-3">
-            <button type="button" class="btn btn-primary btn-lg" id="add-button">+ 질문 추가 +</button>
+            <button type="button" class="btn btn-primary btn-lg" id="add-button" onclick="createQuestionList()">+ 질문 추가 +</button>
           </div>
 
 <!--          <div class="mb-3">-->
@@ -66,7 +68,9 @@
 <!--            <label for="input-image" class="form-label">앨범 이미지 링크</label>-->
 <!--            <input type="text" class="form-control" id="input-image" name="image">-->
 <!--          </div>-->
+          <div id="questionArea">
 
+          </div>
         </form>
       </div>
       <div class="modal-footer">
@@ -83,9 +87,19 @@
 </body>
 <script th:inline="javascript">
   // 모달 내 form 에서 버튼 클릭시 html 요소 추가
-  document.getElementById("add-button").addEventListener(()=>{
+  function createQuestionList() {
+    let formArea = document.getElementById('questionArea');
 
-  });
+    // let question = '<input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">';
+
+    let new_pTag = document.createElement('input');
+
+    new_pTag.setAttribute('class', 'form-control form-control-lg');
+    new_pTag.setAttribute('type', 'text');
+    new_pTag.setAttribute('aria-label', '.form-control-lg example');
+
+    formArea.appendChild(new_pTag);
+  }
 
   // async function을 사용하여 비동기 통신임을 선언
   async function getChatRoomData() {
