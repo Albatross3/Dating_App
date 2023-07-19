@@ -35,8 +35,6 @@
         data-bs-target="#staticBackdrop">
   질문 생성
 </button>
-<input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">
-<input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -44,39 +42,26 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">질문 생성 페이지입니다!</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">질문 생성 페이지입니다! (질문은 최대 3개까지입니다)</h1>
+
       </div>
-      <div class="modal-body">
-        <form th:action="@{/chat/room}" method="post">
+      <form th:action="@{/question}" method="post">
+        <div class="modal-body" id="modal-body">
+
 
           <div class="mb-3">
-            <button type="button" class="btn btn-primary btn-lg" id="add-button" onclick="createQuestionList()">+ 질문 추가 +</button>
+            <button type="button" class="btn btn-primary btn-lg" id="add-button"
+                    onclick="createQuestionList()">+ 질문 추가 +
+            </button>
           </div>
 
-<!--          <div class="mb-3">-->
-<!--            <label for="input-albumName" class="form-label">채팅방 이름</label>-->
-<!--            <input type="text" class="form-control" id="input-albumName" name="albumName">-->
-<!--          </div>-->
 
-<!--          <div class="mb-3">-->
-<!--            <label for="input-price" class="form-label">채팅방 제한 인원</label>-->
-<!--            <input type="text" class="form-control" id="input-price" name="price">-->
-<!--          </div>-->
-
-<!--          <div class="mb-3">-->
-<!--            <label for="input-image" class="form-label">앨범 이미지 링크</label>-->
-<!--            <input type="text" class="form-control" id="input-image" name="image">-->
-<!--          </div>-->
-          <div id="questionArea">
-
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+          <button type="submit" class="btn btn-primary">제출</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -87,38 +72,59 @@
 </body>
 <script th:inline="javascript">
   // 모달 내 form 에서 버튼 클릭시 html 요소 추가
+
+  let numberOfQuestion = 1;
+  let limitNumQuestion = 0;
+
   function createQuestionList() {
-    let formArea = document.getElementById('questionArea');
+    let formArea = document.getElementById('modal-body');
+    if (limitNumQuestion < 3) {
 
-    // let question = '<input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">';
+      // new div
+      let newDiv = document.createElement("div");
+      newDiv.setAttribute('class', 'mb-3');
 
-    let new_pTag = document.createElement('input');
+      // label
+      let newLabel = document.createElement("label");
+      newLabel.setAttribute('for', 'question' + numberOfQuestion);
+      newLabel.innerText = "질문 " + numberOfQuestion;
 
-    new_pTag.setAttribute('class', 'form-control form-control-lg');
-    new_pTag.setAttribute('type', 'text');
-    new_pTag.setAttribute('aria-label', '.form-control-lg example');
+      // question
+      // <input type="text" class="form-control" id="exampleInputEmail1" placeholder="이메일을 입력하세요">
+      let newQuestion = document.createElement("input");
+      newQuestion.setAttribute('class', 'form-control form-control-lg');
+      newQuestion.setAttribute('id', 'question' + numberOfQuestion);
+      newQuestion.setAttribute('type', 'text');
+      newQuestion.setAttribute('name', 'question' + numberOfQuestion);
 
-    formArea.appendChild(new_pTag);
-  }
+      newDiv.append(newLabel, newQuestion);
 
-  // async function을 사용하여 비동기 통신임을 선언
-  async function getChatRoomData() {
-    // await fetch(API요청을 받는 백엔드 주소), {API요청에 담을 정보}
-    const response = await fetch(`http://localhost:8080/chat/room`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      }
-    })
-    // await 로 백엔드에서 리턴을 받은 후 다음 라인이 실행
-    if (response.status == 200) {
-      data = await response.json()
-      console.log(data)
-      return data
-    } else {
-      console.log(response.status, "유저 활동 데이터가 없습니다")
-      return response.status
+      formArea.appendChild(newDiv);
+
+      numberOfQuestion++;
+      limitNumQuestion++;
     }
+
   }
+
+  // // async function을 사용하여 비동기 통신임을 선언
+  // async function getChatRoomData() {
+  //   // await fetch(API요청을 받는 백엔드 주소), {API요청에 담을 정보}
+  //   const response = await fetch(`http://localhost:8080/chat/room`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8'
+  //     }
+  //   })
+  //   // await 로 백엔드에서 리턴을 받은 후 다음 라인이 실행
+  //   if (response.status == 200) {
+  //     data = await response.json()
+  //     console.log(data)
+  //     return data
+  //   } else {
+  //     console.log(response.status, "유저 활동 데이터가 없습니다")
+  //     return response.status
+  //   }
+  // }
 </script>
 </html>
