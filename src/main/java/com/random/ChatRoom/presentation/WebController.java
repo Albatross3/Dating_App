@@ -1,6 +1,6 @@
 package com.random.ChatRoom.presentation;
 
-import com.random.ChatRoom.core.chatroom.domain.ChatType;
+import com.random.ChatRoom.core.question.service.QuestionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,15 +8,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class WebController {
 
-    @GetMapping("/main")
-    public String viewMainPage() {
-        return "main";
+    private final QuestionService questionService;
+
+    public WebController(QuestionService questionService) {
+        this.questionService = questionService;
+    }
+
+    @GetMapping("/question")
+    public String viewMainPage(Model model) {
+        // TODO 여성 프로필과 함께 질문리스트를 뽑아오는 메서드 필요
+        return "question";
     }
 
     @GetMapping("/start")
-    public String viewStartPage(Model model) {
-        // Map<String, ?> 으로 model 값을 넣어줄 수 있다
-        model.addAttribute("chat_types", ChatType.getTypeNameList());
+    public String viewStartPage() {
         return "start";
     }
+
 }
