@@ -15,9 +15,10 @@ public class MemberService {
   private final MemberRepository memberRepository;
 
   @Transactional
-  public void saveMember(MemberRequest memberRequest) {
+  public Long saveMember(MemberRequest memberRequest) {
     Member member = memberRequest.toMember();
-    memberRepository.save(member);
+    Member savedMember = memberRepository.save(member);
+    return savedMember.getMemberId();
   }
 
 }

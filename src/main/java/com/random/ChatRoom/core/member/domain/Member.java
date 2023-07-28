@@ -42,4 +42,11 @@ public class Member {
     this.major = major;
   }
 
+  public Member(Long memberId, Sex sex, String nickname, Integer age, Major major) {
+    this.memberId = memberId;
+    this.sex = sex;
+    this.nickname = nickname;
+    this.age = age;
+    this.major = major;
+  }
 }
