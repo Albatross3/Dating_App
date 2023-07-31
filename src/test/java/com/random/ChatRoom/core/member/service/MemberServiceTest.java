@@ -31,7 +31,7 @@ class MemberServiceTest {
 
     // when
     when(memberRepository.save(any()))
-        .thenReturn(new Member(1L, Sex.MALE, "LEE", 27, Major.INDUSTRIAL_ENGINEERING));
+        .thenReturn(new Member(1L,  Sex.MALE, "LEE", 27, Major.INDUSTRIAL_ENGINEERING));
 
     Long memberId = memberService.saveMember(memberRequest);
 

@@ -7,6 +7,12 @@ import com.random.ChatRoom.core.member.domain.Sex;
 public record MemberRequest(Sex sex, String nickname, int age, Major major) {
 
   public Member toMember() {
-    return new Member(sex, nickname, age, major);
+    return Member.builder()
+        .sex(sex)
+        .nickname(nickname)
+        .age(age)
+        .major(major)
+        .build();
   }
+
 }

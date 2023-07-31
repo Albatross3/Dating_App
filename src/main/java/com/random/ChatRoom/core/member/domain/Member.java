@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -29,24 +30,19 @@ public class Member {
   private String nickname;
 
   @Column(nullable = false)
-  private Integer age;
+  private int age;
 
   @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   private Major major;
 
-  public Member(Sex sex, String nickname, Integer age, Major major) {
-    this.sex = sex;
-    this.nickname = nickname;
-    this.age = age;
-    this.major = major;
-  }
-
-  public Member(Long memberId, Sex sex, String nickname, Integer age, Major major) {
+  @Builder
+  public Member(Long memberId, Sex sex, String nickname, int age, Major major) {
     this.memberId = memberId;
     this.sex = sex;
     this.nickname = nickname;
     this.age = age;
     this.major = major;
   }
+
 }
