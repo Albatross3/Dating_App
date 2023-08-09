@@ -18,7 +18,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        // @MessageMapping 으로 routing
         registry.enableSimpleBroker("/subscribe");
         registry.setApplicationDestinationPrefixes("/publish");
     }

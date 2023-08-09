@@ -22,7 +22,6 @@ public class QuestionController {
     if (paramMap.isEmpty()) {
       throw new InvalidValueException(ErrorCode.QUESTION_EMPTY);
     }
-    questionService.createQuestionList(paramMap);
     return "redirect:/start";
   }
 }
