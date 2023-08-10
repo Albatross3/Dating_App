@@ -1,6 +1,6 @@
 package com.random.ChatRoom.presentation.websocket;
 
-import com.random.ChatRoom.core.chatmessage.dto.request.ChatMessageRequest;
+import com.random.ChatRoom.core.chat.chatmessage.dto.request.ChatMessageRequest;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;

@@ -1,7 +1,6 @@
-package com.random.ChatRoom.core.chatroom.dto.response;
+package com.random.ChatRoom.core.chat.chatroom.dto.response;
 
-import com.random.ChatRoom.core.chatroom.domain.ChatRoom;
-import com.random.ChatRoom.core.chatroom.domain.RoomStatus;
+import com.random.ChatRoom.core.chat.chatroom.domain.RoomStatus;
 
 public record ChatRoomResponse(Long roomId, String chatRoomName, int limitNumberOfPeople, RoomStatus roomStatus) {
 

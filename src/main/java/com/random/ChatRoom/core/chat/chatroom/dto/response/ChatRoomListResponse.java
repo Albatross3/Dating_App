@@ -1,4 +1,4 @@
-package com.random.ChatRoom.core.chatroom.dto.response;
+package com.random.ChatRoom.core.chat.chatroom.dto.response;
 
 import java.util.List;
 

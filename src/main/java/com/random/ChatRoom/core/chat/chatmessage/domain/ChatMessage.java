@@ -1,7 +1,7 @@
-package com.random.ChatRoom.core.chatmessage.domain;
+package com.random.ChatRoom.core.chat.chatmessage.domain;
 
 import com.random.ChatRoom.core.common.BaseEntity;
-import com.random.ChatRoom.core.chatroom.domain.ChatRoom;
+import com.random.ChatRoom.core.chat.chatroom.domain.ChatRoom;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;

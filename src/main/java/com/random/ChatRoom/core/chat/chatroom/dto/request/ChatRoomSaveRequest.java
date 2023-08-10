@@ -1,6 +1,4 @@
-package com.random.ChatRoom.core.chatroom.dto.request;
-
-import com.random.ChatRoom.core.chatroom.domain.ChatRoom;
+package com.random.ChatRoom.core.chat.chatroom.dto.request;
 
 public record ChatRoomSaveRequest(String roomName, int limitedNumberOfPeople) {
 

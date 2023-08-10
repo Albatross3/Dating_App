@@ -1,4 +1,4 @@
-package com.random.ChatRoom.core.chatmessage.dto.request;
+package com.random.ChatRoom.core.chat.chatmessage.dto.request;
 
 import lombok.Getter;
 

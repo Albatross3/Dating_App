@@ -1,4 +1,4 @@
-package com.random.ChatRoom.core.chatroom.domain;
+package com.random.ChatRoom.core.chat.chatroom.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

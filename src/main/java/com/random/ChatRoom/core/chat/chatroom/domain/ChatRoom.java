@@ -1,6 +1,6 @@
-package com.random.ChatRoom.core.chatroom.domain;
+package com.random.ChatRoom.core.chat.chatroom.domain;
 
-import com.random.ChatRoom.core.chatmessage.domain.ChatMessage;
+import com.random.ChatRoom.core.chat.chatmessage.domain.ChatMessage;
 import com.random.ChatRoom.core.common.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
