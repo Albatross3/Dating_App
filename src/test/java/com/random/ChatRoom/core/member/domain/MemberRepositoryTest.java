@@ -1,72 +1,64 @@
 package com.random.ChatRoom.core.member.domain;
 
-import com.random.ChatRoom.core.question.domain.Question;
-import com.random.ChatRoom.core.question.domain.QuestionRepository;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
 
+@ActiveProfiles("test")
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = Replace.NONE)
 class MemberRepositoryTest {
 
   @Autowired
   MemberRepository memberRepository;
 
-  @Autowired
-  QuestionRepository questionRepository;
-
-  @BeforeEach
-  public void ready() {
+  @Test
+  @DisplayName("멤버 저장 테스트")
+  public void memberSaveTest() {
     Member member = Member.builder()
-        .sex(Sex.FEMALE)
-        .age(24)
-        .nickname("NAMURL")
-        .major(Major.COMPUTER_SCIENCE)
+        .sex(Sex.MALE)
+        .age(27)
+        .nickname("Albatross")
+        .major(Major.INDUSTRIAL_ENGINEERING)
         .build();
 
-    Question question1 = Question.builder()
-        .question("이상형은 누구인가요?")
-        .member(member)
-        .build();
+    Member savedMember = memberRepository.save(member);
 
-    Question question2 = Question.builder()
-        .question("이성 친구는 몇명인가요?")
-        .member(member)
-        .build();
-
-    memberRepository.save(member);
-    questionRepository.save(question1);
-    questionRepository.save(question2);
-
+    assertThat(savedMember).usingRecursiveComparison().isEqualTo(member);
   }
 
   @Test
-  public void memberTest() {
+  @DisplayName("멤버 전체 조회 테스트")
+  public void memberFindAllTest() {
+    Member maleMember = Member.builder()
+        .sex(Sex.MALE)
+        .age(27)
+        .nickname("Albatross")
+        .major(Major.INDUSTRIAL_ENGINEERING)
+        .build();
 
-    // member 를 통해서 team 객체를 불러올 때 FetchType.LAZY 를 적용하면 team proxy 객체가 온다
-    // team 객체에 대한 조회가 필요한 경우에 실제 객체가 들어오게 된다
-    // 즉 다에서 1을 불러올 때 @ManyToOne 에 적용할 수 있는 것
-
-    // 내가 궁금한건 1에서 다를 불러올때는 어떻게 해야하는지?
+    Member femaleMember = Member.builder()
+        .sex(Sex.FEMALE)
+        .age(24)
+        .nickname("NAMURL")
+        .major(Major.CREATIVE_WRITING)
+        .build();
+    memberRepository.save(maleMember);
+    memberRepository.save(femaleMember);
 
     List<Member> allMember = memberRepository.findAll();
-    Assertions.assertThat(allMember.size()).isEqualTo(1);
 
-    System.out.println("나오는 것이냐?");
-    Member member = allMember.get(0);
-    List<Question> memberList = member.getQuestions();
-    System.out.println(memberList.size());
+    assertThat(allMember.size()).isEqualTo(2);
+  }
 
-    for (Question q : memberList) {
-      System.out.println(q.getQuestion());
-    }
-
+  @Test
+  @DisplayName("멤버 fetch join test")
+  public void memberFetchJoinTest() {
+    // TODO N+1 문제를 해결하기 위한 FetchJoin or BatchSize 방식에 대한 test
   }
 
 }
