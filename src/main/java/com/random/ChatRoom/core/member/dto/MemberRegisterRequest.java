@@ -4,7 +4,7 @@ import com.random.ChatRoom.core.member.domain.Major;
 import com.random.ChatRoom.core.member.domain.Member;
 import com.random.ChatRoom.core.member.domain.Sex;
 
-public record MemberRequest(Sex sex, String nickname, int age, Major major) {
+public record MemberRegisterRequest(Sex sex, String nickname, int age, Major major) {
 
   public Member toMember() {
     return Member.builder()

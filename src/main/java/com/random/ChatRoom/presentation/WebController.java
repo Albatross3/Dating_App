@@ -25,4 +25,9 @@ public class WebController {
         return "start";
     }
 
+    @GetMapping("/mail")
+    public String viewMailPage() {
+        return "mail";
+    }
+
 }

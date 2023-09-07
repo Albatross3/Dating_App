@@ -1,4 +1,4 @@
-package com.random.ChatRoom.config;
+package com.random.ChatRoom.global.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

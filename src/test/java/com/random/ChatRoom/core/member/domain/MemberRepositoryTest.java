@@ -47,6 +47,7 @@ class MemberRepositoryTest {
         .nickname("NAMURL")
         .major(Major.CREATIVE_WRITING)
         .build();
+
     memberRepository.save(maleMember);
     memberRepository.save(femaleMember);
 

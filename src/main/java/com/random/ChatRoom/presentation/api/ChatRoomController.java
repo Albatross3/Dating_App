@@ -4,8 +4,8 @@ import com.random.ChatRoom.core.chat.chatroom.service.ChatRoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequiredArgsConstructor
 @RestController
+@RequiredArgsConstructor
 public class ChatRoomController {
 
   private final ChatRoomService chatRoomService;
