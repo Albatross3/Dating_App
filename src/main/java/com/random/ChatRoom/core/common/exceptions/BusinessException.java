@@ -1,5 +1,8 @@
 package com.random.ChatRoom.core.common.exceptions;
 
+import lombok.Getter;
+
+@Getter
 public class BusinessException extends RuntimeException{
 
   private final ErrorCode errorCode;
