@@ -23,6 +23,11 @@ public class EmailService {
   private final SpringTemplateEngine springTemplateEngine;
 
   public void sendEmailForRegister(String toEmail) {
+    MimeMessage mimeMessage = makeEmailForRegister(toEmail);
+    sendEmail(mimeMessage);
+  }
+
+  private MimeMessage makeEmailForRegister(String toEmail)  {
     MimeMessage mimeMessage = javaMailSender.createMimeMessage();
     String verificationCode = createVerificationCode();
 
@@ -40,10 +45,15 @@ public class EmailService {
       mimeMessageHelper.setText(emailContent, true);
       mimeMessageHelper.addInline("love-image", new ClassPathResource("static/love.png"));
 
-      javaMailSender.send(mimeMessage);
-
     } catch (MessagingException e) {
       throw new EmailCreationFailedException(ErrorCode.EMAIL_CREATION_FAILED);
+    }
+    return mimeMessage;
+  }
+
+  private void sendEmail(MimeMessage mimeMessage) {
+    try {
+      javaMailSender.send(mimeMessage);
     } catch (MailException e) {
       throw new EmailSendFailedException(ErrorCode.EMAIL_SEND_FAILED);
     }
