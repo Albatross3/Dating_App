@@ -3,9 +3,9 @@ package com.random.ChatRoom.global.email;
 import com.random.ChatRoom.core.common.exceptions.ErrorCode;
 import com.random.ChatRoom.global.email.exceptions.EmailCreationFailedException;
 import com.random.ChatRoom.global.email.exceptions.EmailSendFailedException;
+import com.random.ChatRoom.global.utils.VerificationCodeService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import java.util.Random;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailException;
@@ -21,6 +21,7 @@ public class EmailService {
 
   private final JavaMailSender javaMailSender;
   private final SpringTemplateEngine springTemplateEngine;
+  private final VerificationCodeService verificationCodeService;
 
   public void sendEmailForRegister(String toEmail) {
     MimeMessage mimeMessage = makeEmailForRegister(toEmail);
@@ -29,7 +30,7 @@ public class EmailService {
 
   private MimeMessage makeEmailForRegister(String toEmail)  {
     MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-    String verificationCode = createVerificationCode();
+    String verificationCode = verificationCodeService.createAndSaveVerificationCode(toEmail);
 
     try {
       MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
@@ -57,15 +58,6 @@ public class EmailService {
     } catch (MailException e) {
       throw new EmailSendFailedException(ErrorCode.EMAIL_SEND_FAILED);
     }
-  }
-
-  private String createVerificationCode() {
-    Random random = new Random();
-    StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < 4; i++) {
-      sb.append(random.nextInt(10));
-    }
-    return sb.toString();
   }
 
 }
