@@ -27,6 +27,12 @@ public class Member {
   private Long memberId;
 
   @Column(nullable = false)
+  private String email;
+
+  @Column(nullable = false)
+  private String password;
+
+  @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   private Sex sex;
 
@@ -44,12 +50,16 @@ public class Member {
   private List<Question> questions = new ArrayList<>();
 
   @Builder
-  public Member(Long memberId, Sex sex, String nickname, int age, Major major) {
+  public Member(Long memberId, String email, String password, Sex sex, String nickname, int age,
+      Major major, List<Question> questions) {
     this.memberId = memberId;
+    this.email = email;
+    this.password = password;
     this.sex = sex;
     this.nickname = nickname;
     this.age = age;
     this.major = major;
+    this.questions = questions;
   }
 
 }
