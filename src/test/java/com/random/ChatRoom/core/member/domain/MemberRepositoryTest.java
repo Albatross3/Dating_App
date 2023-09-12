@@ -20,6 +20,8 @@ class MemberRepositoryTest {
   @DisplayName("멤버 저장 테스트")
   public void memberSaveTest() {
     Member member = Member.builder()
+        .email("user123@seoultech.ac.kr")
+        .password("password123")
         .sex(Sex.MALE)
         .age(27)
         .nickname("Albatross")
@@ -35,6 +37,8 @@ class MemberRepositoryTest {
   @DisplayName("멤버 전체 조회 테스트")
   public void memberFindAllTest() {
     Member maleMember = Member.builder()
+        .email("user123@seoultech.ac.kr")
+        .password("password123")
         .sex(Sex.MALE)
         .age(27)
         .nickname("Albatross")
@@ -42,6 +46,8 @@ class MemberRepositoryTest {
         .build();
 
     Member femaleMember = Member.builder()
+        .email("user456@seoultech.ac.kr")
+        .password("password456")
         .sex(Sex.FEMALE)
         .age(24)
         .nickname("NAMURL")

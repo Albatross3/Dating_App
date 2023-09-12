@@ -27,11 +27,22 @@ class MemberServiceTest {
     // given
     memberService = new MemberService(memberRepository);
     MemberRegisterRequest memberRegisterRequest =
-        new MemberRegisterRequest(Sex.MALE, "LEE", 27, Major.INDUSTRIAL_ENGINEERING);
+        new MemberRegisterRequest("user123@seoultech.ac.kr", "password123", Sex.MALE, "LEE", 27,
+            Major.INDUSTRIAL_ENGINEERING);
 
     // when
+    Member savedMember = Member.builder()
+        .memberId(1L)
+        .email("user123@seoultech.ac.kr")
+        .password("password123")
+        .sex(Sex.MALE)
+        .nickname("LEE")
+        .age(27)
+        .major(Major.INDUSTRIAL_ENGINEERING)
+        .build();
+
     when(memberRepository.save(any()))
-        .thenReturn(new Member(1L,  Sex.MALE, "LEE", 27, Major.INDUSTRIAL_ENGINEERING));
+        .thenReturn(savedMember);
 
     Long memberId = memberService.saveMember(memberRegisterRequest);
 
