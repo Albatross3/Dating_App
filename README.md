@@ -1,1 +1,1 @@
-# Dating Application
+# WeLove - University Dating Application
